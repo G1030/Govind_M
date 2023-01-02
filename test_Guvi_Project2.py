@@ -27,6 +27,9 @@ class TestOrangeHRM():
         search_box.send_keys("admin")
         time.sleep(3)
         self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[1]/aside/nav/div[2]/ul/li/a/span").click()
+        time.sleep(4)
+        #Screenshot
+        self.driver.save_screenshot("C:\\Users\\Bhavnish\\PycharmProjects\\pythonSelenium\\UpdateProject2_Screenshot\\TC_PIM_01.png")
 
     def testAdmin_TC_PIM_02(self,setup):
         self.driver.get("https://opensource-demo.orangehrmlive.com/")
@@ -76,6 +79,9 @@ class TestOrangeHRM():
             if sta_dis.text == "Disabled":
                 sta_dis.click()
                 break
+        time.sleep(5)
+        #Screenshot
+        self.driver.save_screenshot("C:\\Users\\Bhavnish\\PycharmProjects\\pythonSelenium\\UpdateProject2_Screenshot\\TC_PIM_02.png")
 
     def testPIM_TC_PIM_03(self,setup):
         self.driver.get("https://opensource-demo.orangehrmlive.com/")
@@ -111,6 +117,9 @@ class TestOrangeHRM():
         self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[4]/div/div[2]/div/div[2]/input").send_keys("Govind@10")
         time.sleep(5)
         self.driver.find_element(By.XPATH, "//button[normalize-space()='Save']").click()
+        time.sleep(5)
+        #Screenshot
+        self.driver.save_screenshot("C:\\Users\\Bhavnish\\PycharmProjects\\pythonSelenium\\UpdateProject2_Screenshot\\TC_PIM_03.png")
 
     def testPIM_TC_PIM_04(self,setup):
         self.driver.get("https://opensource-demo.orangehrmlive.com/")
@@ -149,6 +158,9 @@ class TestOrangeHRM():
         print(Qualification.is_displayed())
         Member=self.driver.find_element(By.XPATH,"//a[normalize-space()='Memberships']")
         print(Member.is_displayed())
+        #Screenshot
+        time.sleep(4)
+        self.driver.save_screenshot("C:\\Users\\Bhavnish\\PycharmProjects\\pythonSelenium\\UpdateProject2_Screenshot\\TC_PIM_04.png")
 
     def testEmp_Personal_Details_05(self,setup):
         self.driver.get("https://opensource-demo.orangehrmlive.com/")
@@ -157,51 +169,67 @@ class TestOrangeHRM():
         self.driver.find_element(By.NAME, "password").send_keys("admin123")
         self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button").click()
 
-        #My Info
-        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[1]/aside/nav/div[2]/ul/li[6]/a").click()
+        # PIM Details
+        self.driver.find_element(By.XPATH,"//span[normalize-space()='PIM']").click()
 
-        #Personal Details
-        Emp_Name=self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div[1]/div/div/div[2]/div[1]/div[2]/input")
-        Emp_Name.clear()
+        #SearEmployee Name
         time.sleep(3)
-        Emp_Name.send_keys("Govindharaj Muthu")
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/div/div/input").send_keys("Govindharaj Muthu")
+        self.driver.find_element(By.XPATH,"//button[normalize-space()='Search']").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH,"//div[@class='oxd-table-card-cell-checkbox']").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[3]/div").click()
 
-        Emp_Id=self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[2]/div[1]/div[1]/div/div[2]/input")
-        Emp_Id.clear()
-        time.sleep(3)
-        Emp_Id.send_keys("0270")
+        #NicName
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div[2]/div/div/div[2]/input").send_keys("MG")
 
-        #Nationality
+        # Nationality
         self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[1]/div[1]/div/div[2]/div/div").click()
-        Nation=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[1]/div[1]/div/div[2]/div/div/div[2]")
+        Nation = self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[1]/div[1]/div/div[2]/div/div/div[2]")
         for Nat in Nation:
-            if Nat.text=="Afghan":
+            if Nat.text == "Afghan":
                 Nat.click()
+                break
+
+        #Marital Status
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[1]/div[2]/div/div[2]/div/div").click()
+        Ma_sta=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[1]/div[2]/div/div[2]/div/div/div[2]/i")
+        for ma in Ma_sta:
+            if ma.text=="Married":
+                ma.click()
                 break
 
         #Date of Birth
         time.sleep(5)
-        Date=self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[2]/div[1]/div/div[2]/div/div/input")
+        Date = self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[2]/div[1]/div/div[2]/div/div/input")
         Date.clear()
         Date.send_keys("1987-03-10")
 
-        #Smoker
-        self.driver.find_element(By.XPATH,"//label[normalize-space()='Yes']").click()
+        #Gender
+        self.driver.find_element(By.XPATH,"//label[normalize-space()='Male']").click()
 
-        #Save Button
+        # Smoker
+        #self.driver.find_element(By.XPATH, "//label[normalize-space()='Yes']").click()
+
+        # Save Button
         time.sleep(3)
         self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[5]/button").click()
 
-        #Blood Type
+        # Blood Type
         time.sleep(3)
         self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[2]/div/form/div[1]/div/div/div/div[2]/div/div").click()
-        Group=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[2]/div/form/div[1]/div/div/div/div[2]/div/div/div[2]")
+        Group = self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[2]/div/form/div[1]/div/div/div/div[2]/div/div/div[2]")
         for Bld in Group:
-            if Bld.text=="A+":
+            if Bld.text == "A+":
                 Bld.click()
                 break
+
         #Save Button
         self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[2]/div/form/div[2]/button").click()
+        time.sleep(5)
+        #Screenshot
+        self.driver.save_screenshot("C:\\Users\\Bhavnish\\PycharmProjects\\pythonSelenium\\UpdateProject2_Screenshot\\TC_PIM_05.png")
 
     def testEmp_Contact_Details_06(self,setup):
         self.driver.get("https://opensource-demo.orangehrmlive.com/")
@@ -210,8 +238,17 @@ class TestOrangeHRM():
         self.driver.find_element(By.NAME, "password").send_keys("admin123")
         self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button").click()
 
-        # My Info
-        self.driver.find_element(By.XPATH, "//*[@id='app']/div[1]/div[1]/aside/nav/div[2]/ul/li[6]/a").click()
+        # PIM Details
+        self.driver.find_element(By.XPATH, "//span[normalize-space()='PIM']").click()
+
+        # SearEmployee Name
+        time.sleep(3)
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/div/div/input").send_keys("Govindharaj Muthu")
+        self.driver.find_element(By.XPATH, "//button[normalize-space()='Search']").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH, "//div[@class='oxd-table-card-cell-checkbox']").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[3]/div").click()
 
         #Contact Details
         time.sleep(5)
@@ -237,8 +274,11 @@ class TestOrangeHRM():
         Email=self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div/div[1]/div/div[2]/input")
         Email.clear()
         Email.send_keys("G@gmail.com")
-        time.sleep(3)
+        time.sleep(5)
         self.driver.find_element(By.XPATH,"//button[normalize-space()='Save']").click()
+        time.sleep(5)
+        #Screenshot
+        self.driver.save_screenshot("C:\\Users\\Bhavnish\\PycharmProjects\\pythonSelenium\\UpdateProject2_Screenshot\\TC_PIM_06.png")
 
     def testEmergency_Contact_Details_07(self, setup):
         self.driver.get("https://opensource-demo.orangehrmlive.com/")
@@ -247,8 +287,17 @@ class TestOrangeHRM():
         self.driver.find_element(By.NAME, "password").send_keys("admin123")
         self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button").click()
 
-        #My Info
-        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[1]/aside/nav/div[2]/ul/li[6]/a").click()
+        # PIM Details
+        self.driver.find_element(By.XPATH, "//span[normalize-space()='PIM']").click()
+
+        # SearEmployee Name
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/div/div/input").send_keys("Govindharaj Muthu")
+        self.driver.find_element(By.XPATH, "//button[normalize-space()='Search']").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH, "//div[@class='oxd-table-card-cell-checkbox']").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[3]/div").click()
+
         #Emergency Contacts
         time.sleep(3)
         self.driver.find_element(By.XPATH,"//a[normalize-space()='Emergency Contacts']").click()
@@ -260,6 +309,9 @@ class TestOrangeHRM():
         self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[2]/div/div[2]/input").send_keys("Friend")
         self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[2]/div/div[2]/div/div[2]/input").send_keys("5555555555")
         self.driver.find_element(By.XPATH,"//button[normalize-space()='Save']").click()
+        time.sleep(5)
+        #Screenshot
+        self.driver.save_screenshot("C:\\Users\\Bhavnish\\PycharmProjects\\pythonSelenium\\UpdateProject2_Screenshot\\TC_PIM_07.png")
 
     def testEmp_Dependents_ContactDetails_08(self, setup):
         self.driver.get("https://opensource-demo.orangehrmlive.com/")
@@ -268,8 +320,16 @@ class TestOrangeHRM():
         self.driver.find_element(By.NAME, "password").send_keys("admin123")
         self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button").click()
 
-        #My Info
-        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[1]/aside/nav/div[2]/ul/li[6]/a").click()
+        # PIM Details
+        self.driver.find_element(By.XPATH, "//span[normalize-space()='PIM']").click()
+
+        # SearEmployee Name
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/div/div/input").send_keys("Govindharaj Muthu")
+        self.driver.find_element(By.XPATH, "//button[normalize-space()='Search']").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH, "//div[@class='oxd-table-card-cell-checkbox']").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[3]/div").click()
 
         #Dependents_ContactDetails
         time.sleep(3)
@@ -296,6 +356,9 @@ class TestOrangeHRM():
 
         time.sleep(3)
         self.driver.find_element(By.XPATH,"//button[normalize-space()='Save']").click()
+        time.sleep(5)
+        #Screenshot
+        self.driver.save_screenshot("C:\\Users\\Bhavnish\\PycharmProjects\\pythonSelenium\\UpdateProject2_Screenshot\\TC_PIM_08.png")
 
     def testEmp_Job_Details_09(self, setup):
         self.driver.get("https://opensource-demo.orangehrmlive.com/")
@@ -304,149 +367,292 @@ class TestOrangeHRM():
         self.driver.find_element(By.NAME, "password").send_keys("admin123")
         self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button").click()
 
-        # My Info
-        self.driver.find_element(By.XPATH, "//*[@id='app']/div[1]/div[1]/aside/nav/div[2]/ul/li[6]/a").click()
+        # PIM Details
+        self.driver.find_element(By.XPATH, "//span[normalize-space()='PIM']").click()
 
-        #Qualifications
-        time.sleep(3)
-        self.driver.find_element(By.XPATH,"//a[normalize-space()='Qualifications']").click()
-        #Add Work Experiance
-        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[2]/div[1]/div/button").click()
-        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[2]/div[1]/form/div[1]/div/div[1]/div/div[2]/input").send_keys("Guvi Tech")
-        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[2]/div[1]/form/div[1]/div/div[2]/div/div[2]/input").send_keys("Software Testing")
-
-        #From Date
-        Fdate=self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[2]/div[1]/form/div[2]/div/div[1]/div/div[2]/div/div/input")
-        Fdate.click()
-        Fdate.send_keys("2012-03-10")
-
-        Tdate=self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[2]/div[1]/form/div[2]/div/div[2]/div/div[2]/div/div/input")
-        Tdate.click()
-        Tdate.send_keys("2022-10-10")
-
-        time.sleep(3)
-        self.driver.find_element(By.XPATH,"//button[normalize-space()='Save']").click()
-
-        #Education
+        # SearEmployee Name
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/div/div/input").send_keys("Govindharaj Muthu")
+        self.driver.find_element(By.XPATH, "//button[normalize-space()='Search']").click()
         time.sleep(5)
-        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[3]/div[1]/div/button").click()
-        time.sleep(3)
-        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[3]/div[1]/form/div[1]/div/div[1]/div/div[2]/div/div").click()
-        Degree=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[3]/div[1]/form/div[1]/div/div[1]/div/div[2]/div/div/div[2]")
-        print(len(Degree))
-        for de in Degree:
-            if de.text=="Master's Degree":
-                de.click()
+        self.driver.find_element(By.XPATH, "//div[@class='oxd-table-card-cell-checkbox']").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[3]/div").click()
+
+        #Job Button
+        self.driver.find_element(By.XPATH,"//a[normalize-space()='Job']").click()
+
+        #Joined Date
+        self.driver.find_element(By.XPATH,"//input[@placeholder='yyyy-mm-dd']").send_keys("2020-20-20")
+
+        #Job Title
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[2]/div/div[2]/div/div").click()
+        Job_Ele=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[2]/div/div[2]/div/div/div[2]")
+        for job in Job_Ele:
+            if job.text=="Account Assistant":
+                job.click()
                 break
-        time.sleep(3)
-        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[3]/div[1]/form/div[1]/div/div[2]/div/div[2]/input").send_keys("College Of Engg & Tech")
-        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[3]/div[1]/form/div[1]/div/div[3]/div/div[2]/input").send_keys("MCA")
-        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[3]/div[1]/form/div[1]/div/div[4]/div/div[2]/input").send_keys("2011")
-        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[3]/div[1]/form/div[1]/div/div[5]/div/div[2]/input").send_keys("71%")
 
-        #From Date
-        EFdate=self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[3]/div[1]/form/div[2]/div/div[1]/div/div[2]/div/div/input")
-        EFdate.click()
-        EFdate.send_keys("2008-05-10")
+        #Job Category
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[4]/div/div[2]/div/div").click()
+        Job_Cate=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[2]/div/div[2]/div/div/div[2]")
+        for jca in Job_Cate:
+            if jca.text=="SOFTWARE ENGINEER":
+                jca.click()
+                break
 
-        #To Date
-        ETdate=self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[3]/div[1]/form/div[2]/div/div[2]/div/div[2]/div/div/input")
-        ETdate.click()
-        ETdate.send_keys("2011-05-11")
+        #Sub Unit
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[5]/div/div[2]/div/div").click()
+        sub_Ele=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[5]/div/div[2]/div/div/div[2]")
+        for s in sub_Ele:
+            if s.text=="Administration":
+                s.click()
+                break
+
+        #Location
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[6]/div/div[2]/div/div").click()
+        Loc_Ele=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[6]/div/div[2]/div/div/div[2]")
+        for lo in Loc_Ele:
+            if lo.text=="Canadian Regional HQ":
+                lo.click()
+                break
+
+        #Employeement Status
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[7]/div/div[2]/div/div").click()
+        Emp_sta=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[7]/div/div[2]/div/div/div[2]")
+        for es in Emp_sta:
+            if es.text=="Full-Time Contract":
+                es.click()
+                break
+
+        #Button
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[2]/div/label/span").click()
+
+        #Contract start Date
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div/div[1]/div/div[2]/div/div/input").send_keys("2015-10-20")
+
+        #Contract End Date
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div/div[2]/div/div[2]/div/div/input").send_keys("2022-10-20")
+
+        #Save Button
+        time.sleep(5)
         self.driver.find_element(By.XPATH,"//button[normalize-space()='Save']").click()
+        #Screenshot
+        time.sleep(3)
+        self.driver.save_screenshot("C:\\Users\\Bhavnish\\PycharmProjects\\pythonSelenium\\UpdateProject2_Screenshot\\TC_PIM_09.png")
 
-    def testEmp_TC_MEM_10(self,setup):
+    def testEmp_Job_Termination_10(self, setup):
         self.driver.get("https://opensource-demo.orangehrmlive.com/")
         time.sleep(3)
         self.driver.find_element(By.NAME, "username").send_keys("Admin")
         self.driver.find_element(By.NAME, "password").send_keys("admin123")
         self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button").click()
 
-        # My Info
-        time.sleep(3)
-        self.driver.find_element(By.XPATH, "//*[@id='app']/div[1]/div[1]/aside/nav/div[2]/ul/li[6]/a").click()
+        # PIM Details
+        self.driver.find_element(By.XPATH, "//span[normalize-space()='PIM']").click()
 
-        #Memberships
-        self.driver.find_element(By.XPATH,"//a[normalize-space()='Memberships']").click()
+        # SearEmployee Name
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/div/div/input").send_keys("Govindharaj Muthu")
+        self.driver.find_element(By.XPATH, "//button[normalize-space()='Search']").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH, "//div[@class='oxd-table-card-cell-checkbox']").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[3]/div").click()
+
+        #Job Button
+        self.driver.find_element(By.XPATH,"//a[normalize-space()='Job']").click()
+
+        #Terminate Employment
+        self.driver.find_element(By.XPATH,"//button[normalize-space()='Terminate Employment']").click()
+        #Termination Date
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[3]/div/div/div/form/div[1]/div/div[2]/div/div/input").send_keys("2022-10-30")
+        #Termination Reason
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[3]/div/div/div/form/div[2]/div/div[2]/div/div").click()
+        Ter_Ele=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[3]/div/div/div/form/div[2]/div/div[2]/div/div/div[2]")
+        for ter in Ter_Ele:
+            if ter.text=="Contract Not Renewed":
+                ter.click()
+                break
+
+        self.driver.find_element(By.XPATH,"//textarea[@placeholder='Type here']").send_keys("Software Testing")
+        #Save Button
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[3]/div/div/div/form/div[4]/button[2]").click()
+        time.sleep(5)
+        #Screenshot
+        self.driver.save_screenshot("C:\\Users\\Bhavnish\\PycharmProjects\\pythonSelenium\\UpdateProject2_Screenshot\\TC_PIM_10.png")
+
+    def testEmp_Job_Activation_11(self, setup):
+        self.driver.get("https://opensource-demo.orangehrmlive.com/")
+        time.sleep(3)
+        self.driver.find_element(By.NAME, "username").send_keys("Admin")
+        self.driver.find_element(By.NAME, "password").send_keys("admin123")
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button").click()
+
+        # PIM Details
+        self.driver.find_element(By.XPATH, "//span[normalize-space()='PIM']").click()
+
+        # SearEmployee Name
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/div/div/input").send_keys("Govindharaj Muthu")
+        self.driver.find_element(By.XPATH, "//button[normalize-space()='Search']").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH, "//div[@class='oxd-table-card-cell-checkbox']").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[3]/div").click()
+
+        #Job Button
+        self.driver.find_element(By.XPATH,"//a[normalize-space()='Job']").click()
+
+        #Activate Employment
+        time.sleep(5) 
+        self.driver.find_element(By.XPATH,"//button[normalize-space()='Activate Employment']").click()
+        time.sleep(3)
+
+        #Screenshot
+        self.driver.save_screenshot("C:\\Users\\Bhavnish\\PycharmProjects\\pythonSelenium\\UpdateProject2_Screenshot\\TC_PIM_11.png")
+
+    def testEmp_Salary_12(self, setup):
+        self.driver.get("https://opensource-demo.orangehrmlive.com/")
+        time.sleep(3)
+        self.driver.find_element(By.NAME, "username").send_keys("Admin")
+        self.driver.find_element(By.NAME, "password").send_keys("admin123")
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button").click()
+
+        # PIM Details
+        self.driver.find_element(By.XPATH, "//span[normalize-space()='PIM']").click()
+
+        # SearEmployee Name
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/div/div/input").send_keys("Govindharaj Muthu")
+        self.driver.find_element(By.XPATH, "//button[normalize-space()='Search']").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH, "//div[@class='oxd-table-card-cell-checkbox']").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[3]/div").click()
+
+        #Salary
+        self.driver.find_element(By.XPATH,"//a[normalize-space()='Salary']").click()
 
         #Add Button
         self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/div/button").click()
 
-        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[1]/div/div[2]/div/div").click()
-        Mem_Ele=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[1]/div/div[2]/div/div/div[2]")
-        for mem in Mem_Ele:
-            if mem.text=="ACCA":
-                mem.click()
-                break
-
-        #Subscription
-        time.sleep(5)
+        #Salary Component
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[1]/div/div[2]/input").send_keys("10 Lakh")
+        #Pay Grade
         self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[2]/div/div[2]/div/div").click()
-        Com_Ele=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[2]/div/div[2]/div/div/div[2]")
-        print(len(Com_Ele))
-        for co in Com_Ele:
-            if co.text=="Company":
-                co.click()
+        Pay_Ele=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[2]/div/div[2]/div/div/div[2]")
+        for pay in Pay_Ele:
+            if pay.text=="Grade 1":
+                pay.click()
                 break
 
-        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[3]/div/div[2]/input").send_keys("10000")
+        #Pay Frequency
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[3]/div/div[2]/div/div").click()
+        Pay_Fre=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[3]/div/div[2]/div/div/div[2]")
+        for freq in Pay_Fre:
+            if freq.text=="Hourly":
+                freq.click()
+                break
         #Currency
         self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[4]/div/div[2]/div/div").click()
-        Curr=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[4]/div/div[2]/div/div/div[2]")
-        for c in Curr:
-            if c.text=="Afghanistan Afghani":
-                c.click()
+        Cur_Ele=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[4]/div/div[2]/div/div/div[2]")
+        for curr in Cur_Ele:
+            if curr.text=="United States Dollar":
+                curr.click()
                 break
 
-        #Subscription Date
-        Subdate=self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[5]/div/div[2]/div/div/input")
-        Subdate.click()
-        Subdate.send_keys("2015-10-10")
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[5]/div/div[2]/input").send_keys("50000")
 
-        #Renewal Date
-        Redate=self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[6]/div/div[2]/div/div/input")
-        Redate.click()
-        Redate.send_keys("2020-10-10")
+        #Deposit Details
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div/label/span").click()
+
+        #Account Number
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[4]/div[1]/div[1]/div/div[2]/input").send_keys("01234567890")
+        #Account Type
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[4]/div[1]/div[2]/div/div[2]/div/div").click()
+        Acc_Type=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[4]/div[1]/div[2]/div/div[2]/div/div/div[2]")
+        for acc in Acc_Type:
+            if acc.text=="Savings":
+                acc.click()
+                break
+
+        #Routing Number
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[4]/div[2]/div[1]/div/div[2]/input").send_keys("11111")
+        #Amount
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[4]/div[2]/div[2]/div/div[2]/input").send_keys(50000)
+        #Save Button
+        self.driver.find_element(By.XPATH,"//button[normalize-space()='Save']").click()
+        #Screenshot
         time.sleep(5)
-        self.driver.find_element(By.TAG_NAME,"button").click()
+        self.driver.save_screenshot("C:\\Users\\Bhavnish\\PycharmProjects\\pythonSelenium\\UpdateProject2_Screenshot\\TC_PIM_12.png")
 
-    def testEmp_TC_REP_11(self,setup):
+
+    def testEmp_Tex_Exemptions_13(self, setup):
         self.driver.get("https://opensource-demo.orangehrmlive.com/")
         time.sleep(3)
         self.driver.find_element(By.NAME, "username").send_keys("Admin")
         self.driver.find_element(By.NAME, "password").send_keys("admin123")
         self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button").click()
 
-        # My Info
-        time.sleep(3)
-        self.driver.find_element(By.XPATH, "//*[@id='app']/div[1]/div[1]/aside/nav/div[2]/ul/li[6]/a").click()
-        #Report
-        self.driver.find_element(By.XPATH,"//a[normalize-space()='Report-to']").click()
+        # PIM Details
+        self.driver.find_element(By.XPATH, "//span[normalize-space()='PIM']").click()
 
+        # SearEmployee Name
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/div/div/input").send_keys("Govindharaj Muthu")
+        self.driver.find_element(By.XPATH, "//button[normalize-space()='Search']").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH, "//div[@class='oxd-table-card-cell-checkbox']").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[3]/div").click()
 
-    def testEmp_Salary_12(self,setup):
-        self.driver.get("https://opensource-demo.orangehrmlive.com/")
-        time.sleep(3)
-        self.driver.find_element(By.NAME, "username").send_keys("Admin")
-        self.driver.find_element(By.NAME, "password").send_keys("admin123")
-        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button").click()
-
-        # My Info
-        self.driver.find_element(By.XPATH, "//*[@id='app']/div[1]/div[1]/aside/nav/div[2]/ul/li[6]/a").click()
-        #Salary
-        self.driver.find_element(By.XPATH,"//a[normalize-space()='Salary']").click()
-
-    def testEmp_Tax_Exemptions_13(self, setup):
-        self.driver.get("https://opensource-demo.orangehrmlive.com/")
-        time.sleep(3)
-        self.driver.find_element(By.NAME, "username").send_keys("Admin")
-        self.driver.find_element(By.NAME, "password").send_keys("admin123")
-        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button").click()
-
-        # My Info
-        self.driver.find_element(By.XPATH, "//*[@id='app']/div[1]/div[1]/aside/nav/div[2]/ul/li[6]/a").click()
         #Tax Exemptions
         self.driver.find_element(By.XPATH,"//a[normalize-space()='Tax Exemptions']").click()
+        #Status
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[1]/div/div[2]/div/div").click()
+        St_ele=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[1]/div/div[2]/div/div/div[2]")
+        for st in St_ele:
+            if st.text=="Married":
+                st.click()
+                break
+
+        #Exemption
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div[2]/div/div[2]/input").send_keys("5000")
+        #State
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[2]/div/div[1]/div/div[2]/div/div").click()
+        Ex_sta=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[2]/div/div[1]/div/div[2]/div/div/div[2]")
+        for ex in Ex_sta:
+            if ex.text=="Alabama":
+                ex.click()
+                break
+
+        #In State
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[2]/div/div[2]/div/div[2]/div/div").click()
+        In_Sta=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[2]/div/div[2]/div/div[2]/div/div/div[2]")
+        for Ins in In_Sta:
+            if Ins.text=="Married":
+                Ins.click()
+                break
+
+        #UnEmployee State
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[2]/div/div[4]/div/div[2]/div/div").click()
+        Un_Emp=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[2]/div/div[4]/div/div[2]/div/div/div[2]")
+        for un in Un_Emp:
+            if un.text=="Alabama":
+                un.click()
+                break
+
+        #Work State
+        self.driver.find_element(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[2]/div/div[5]/div/div[2]/div/div").click()
+        Wr_Sta=self.driver.find_elements(By.XPATH,"//*[@id='app']/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[2]/div/div[5]/div/div[2]/div/div/div[2]")
+        for wr in Wr_Sta:
+            if wr.text=="Alabama":
+                wr.click()
+                break
+
+        #Save Button
+        self.driver.find_element(By.XPATH,"//button[normalize-space()='Save']").click()
+
+        #Screenshot
+        time.sleep(5)
+        self.driver.save_screenshot("C:\\Users\\Bhavnish\\PycharmProjects\\pythonSelenium\\UpdateProject2_Screenshot\\TC_PIM_13.png")
+
 
 
 
