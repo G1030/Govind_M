@@ -1,6 +1,7 @@
 import openpyxl
 
 #File--->Workbook--->Sheets--->Rows--->Columns
+# Read Data From Excel
 
 File="C:\SeleniumPractice\data.xlsx"
 Workbook=openpyxl.load_workbook(File)
